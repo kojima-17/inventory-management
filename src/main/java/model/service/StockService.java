@@ -7,6 +7,7 @@ import model.been.WarehouseBeen;
 import model.dao.DAOException;
 import model.dao.StockDAO;
 import model.dao.WarehouseDAO;
+import model.exception.NotFoundException;
 
 public class StockService {
 	private StockDAO stockDAO;
@@ -24,4 +25,14 @@ public class StockService {
 	public List<WarehouseBeen> findAllWarehouse() throws DAOException {
 		return warehouseDAO.findAll();
 	}
+	
+	public List<StockViewBeen> findBySerchword(int warehouseId, String serchWord) throws DAOException , NotFoundException{
+		List<StockViewBeen> list =  stockDAO.findViewByWarehouseIdAndName(warehouseId, serchWord);
+		if(list.size() == 0) {
+			throw new NotFoundException("在庫が見つかりませんでした。");
+		} else {
+			return list;
+		}
+	}
+	
 }

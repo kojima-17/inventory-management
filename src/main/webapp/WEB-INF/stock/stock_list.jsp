@@ -11,15 +11,16 @@
 	<jsp:include page="/WEB-INF/parts/header.jsp"></jsp:include>
 	<h1>在庫一覧</h1>
 	<p>${ message }</p>
-	<form actoin="/stock" method="post">
-		倉庫:<select name="warehouseId">
-		<option></option>
+	<form action="stock" method="post">
+		倉庫: <select name="warehouseId">
+			<option value="0"></option>
 			<c:forEach var="warehouse" items="${ warehouses }">
-				<option value="${ warehouse.id }">${ warehouse.name }</option>
+				<option value="${ warehouse.id }"
+					<c:if test="${ crtWarehouseId == warehouse.id }">selected</c:if>>
+					${ warehouse.name }</option>
 			</c:forEach>
-		</select>
-		キーワード(JAN/名称):<input type="text" name="serchWord">
-		<input type="submit" value="検索">
+		</select> キーワード(JAN/名称): <input type="text" name="serchWord"
+			value="${ crtSerchWord }"> <input type="submit" value="検索">
 	</form>
 	<table border="1">
 		<tr>
@@ -36,8 +37,6 @@
 				<td>${ stock.qty }</td>
 			</tr>
 		</c:forEach>
-
 	</table>
-
 </body>
 </html>

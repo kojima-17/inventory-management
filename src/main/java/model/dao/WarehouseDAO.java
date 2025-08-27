@@ -13,7 +13,7 @@ public class WarehouseDAO {
 	String SQL_SELECT_TEMPLATE = """
 			SELECT id, name, location
 			FROM warehouses
-			WHERE 1=1;
+			WHERE 1=1
 			""";
 	
 	public List<WarehouseBeen> findAll(){
