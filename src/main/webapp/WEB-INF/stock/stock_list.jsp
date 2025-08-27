@@ -10,8 +10,10 @@
 <body>
 	<jsp:include page="/WEB-INF/parts/header.jsp"></jsp:include>
 	<h1>在庫一覧</h1>
+	<p>${ message }</p>
 	<form actoin="/stock" method="post">
 		倉庫:<select name="warehouseId">
+		<option></option>
 			<c:forEach var="warehouse" items="${ warehouses }">
 				<option value="${ warehouse.id }">${ warehouse.name }</option>
 			</c:forEach>
@@ -26,7 +28,7 @@
 			<th>倉庫</th>
 			<th>在庫数</th>
 		</tr>
-		<c:forEach var="stockMovement" items="${ stockMovements }">
+		<c:forEach var="stock" items="${ stocks }">
 			<tr>
 				<td>${ stock.jan }</td>
 				<td>${ stock.productName }</td>
