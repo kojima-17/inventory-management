@@ -3,33 +3,33 @@ package model.been;
 import java.io.Serializable;
 
 public class StockBeen implements Serializable {
-	private ProductBeen product;
-	private WarehouseBeen warehouse;
+	private int productId;
+	private int warehouseId;
 	private int qty;
 	
-	public StockBeen(ProductBeen product, WarehouseBeen warehouse, int qty) {
-		this.product = product;
-		this.warehouse = warehouse;
+	public StockBeen(int productId, int warehouseId, int qty) {
+		this.productId = productId;
+		this.warehouseId = warehouseId;
 		this.qty = qty;
 	}
 	
 	public StockBeen() {
 	}
 
-	public ProductBeen getProduct() {
-		return product;
+	public int getProductId() {
+		return productId;
 	}
 
-	public void setProduct(ProductBeen product) {
-		this.product = product;
+	public void setProductId(int productId) {
+		this.productId = productId;
 	}
 
-	public WarehouseBeen getWarehouse() {
-		return warehouse;
+	public int getWarehouseId() {
+		return warehouseId;
 	}
 
-	public void setWarehouse(WarehouseBeen warehouse) {
-		this.warehouse = warehouse;
+	public void setWarehouseId(int warehouseId) {
+		this.warehouseId = warehouseId;
 	}
 
 	public int getQty() {
@@ -39,7 +39,5 @@ public class StockBeen implements Serializable {
 	public void setQty(int qty) {
 		this.qty = qty;
 	}
-
-	
 
 }

@@ -11,8 +11,8 @@
 	<jsp:include page="/WEB-INF/parts/header.jsp"></jsp:include>
 	<h1>入荷(クイック)</h1>
 	<p>${ message }</p>
-	<form action="parcheses/new" method="post">
-		仕入先: <select name="warehouseId">
+	<form action="receive" method="post">
+		仕入先: <select name="supplierId">
 			<c:forEach var="supplier" items="${ suppliers }">
 				<option value="${ supplier.id }"
 					<c:if test="${ crtSupplierId == supplier.id }">selected</c:if>>
@@ -24,8 +24,8 @@
 					<c:if test="${ crtWarehouseId == warehouse.id }">selected</c:if>>
 					${ warehouse.name }</option>
 			</c:forEach>
-		</select> JAN: <input type="text" name="jan"> 数量: <input type="text"
-			name="qty"> <input type="submit" value="受け入れ">
+		</select> JAN: <input type="text" name="jan" value="${ crtJan }"> 数量: <input type="text"
+			name="qty" value="${ crtQty }"> <input type="submit" value="受け入れ">
 	</form>
 </body>
 </html>

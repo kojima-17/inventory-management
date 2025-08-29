@@ -95,6 +95,25 @@ public class StockMovementDAO {
 		}
 	}
 	
+	public int insert(int productId, int warehouseId, int qty, String type, String refType, int refId , Connection con) throws DAOException {
+		String sql = """
+				INSERT INTO stock_movements (product_id, warehouse_id, qty, type, ref_type, ref_id)
+				VALUES (?, ?, ?, ?, ?, ?);
+				""";
+		try(PreparedStatement ps = con.prepareStatement(sql)){
+			ps.setInt(1, productId);
+			ps.setInt(2, warehouseId);
+			ps.setInt(3, qty);
+			ps.setString(4, type);
+			ps.setString(5, refType);
+			ps.setInt(6, refId);
+			return ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		throw new DAOException("入出庫履歴の追加に失敗しました");
+	}
+	
 	private List<StockMovementViewBeen> execSelectView(PreparedStatement ps) throws SQLException{
 		List<StockMovementViewBeen> list = new ArrayList<>();
 		try(ResultSet rs = ps.executeQuery();){
