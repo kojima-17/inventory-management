@@ -8,6 +8,7 @@ import java.util.Optional;
 
 import model.been.AuditLogBeen;
 import model.been.OrderBeen;
+import model.been.OrderedPurchaseBeen;
 import model.been.ProductBeen;
 import model.been.PurchaseLineBeen;
 import model.been.SupplierBeen;
@@ -55,9 +56,29 @@ public class PurchaseService {
 	public List<WarehouseBeen> findAllWarehouses() throws DAOException {
 		return warehouseDAO.findAll();
 	}
+
+	public List<OrderedPurchaseBeen> findOrderedPruchases() throws DAOException {
+		return purchaseDAO.findViewByOredered();
+	}
 	
-	public List<>
+	public List<PurchaseLineBeen> findPurchaseLinesBypurchaseId(int purchaseId) throws DAOException, NotFoundException{
+		List<PurchaseLineBeen> list = purchaseLinesDAO.findByPurchaseId(purchaseId);
+		if(list.size() == 0) {
+			throw new NotFoundException("未検収の商品が見つかりませんでした");
+		} else {
+			return list;
+		}
+	}
 	
+	public int receive(List<PurchaseLineBeen> purchaseLines, int purchaseId) throws DAOException {
+		try(Connection con = new InventoryManagementConnction().getConnection()){
+			try {
+				con.setAutoCommit(false);
+			}
+		}
+	}
+	
+
 	public boolean parchaseAdd(int supplierId, int warehouseId, String jan, int qty) throws DAOException, NotFoundException, IllegalArgumentException {
 		if(jan == null || jan.length() == 0) {
 			throw new IllegalArgumentException("JANが入力されてません");

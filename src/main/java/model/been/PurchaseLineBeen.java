@@ -15,8 +15,15 @@ public class PurchaseLineBeen implements Serializable {
 		this.orderedQty = orderedQty;
 	}
 	
-	public purchaseLineBeen(int id, int productId, int ordered, int orderedQtym int receivedQty) {
-		this.id = 
+	public PurchaseLineBeen(int id, int productId, int orderedQty, int receivedQty) {
+		this.id = id;
+		this.productId = productId;
+		this.orderedQty = orderedQty;
+		this.receivedQty = receivedQty;
+	}
+	
+	public int getNotReceivedQty() {
+		return orderedQty - receivedQty; 
 	}
 
 	public int getId() {
@@ -58,6 +65,6 @@ public class PurchaseLineBeen implements Serializable {
 	public void setReceivedQty(int receivedQty) {
 		this.receivedQty = receivedQty;
 	}
-
+	
 
 }
